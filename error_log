@@ -1,0 +1,45 @@
+[12-Mar-2024 13:40:59 UTC] PHP Notice:  Undefined index: mobile_no in /home/kitecareer/public_html/regtest/index.php on line 26
+[12-Mar-2024 13:40:59 UTC] PHP Notice:  Undefined index: degree in /home/kitecareer/public_html/regtest/index.php on line 27
+[12-Mar-2024 13:40:59 UTC] PHP Notice:  Undefined index: college in /home/kitecareer/public_html/regtest/index.php on line 28
+[12-Mar-2024 13:40:59 UTC] PHP Notice:  Undefined index: year in /home/kitecareer/public_html/regtest/index.php on line 29
+[12-Mar-2024 13:40:59 UTC] PHP Notice:  Undefined index: department in /home/kitecareer/public_html/regtest/index.php on line 30
+[12-Mar-2024 13:40:59 UTC] PHP Notice:  Undefined index: city in /home/kitecareer/public_html/regtest/index.php on line 31
+[12-Mar-2024 13:40:59 UTC] PHP Notice:  Undefined index: dob in /home/kitecareer/public_html/regtest/index.php on line 32
+[12-Mar-2024 13:41:22 UTC] PHP Notice:  Undefined index: mobile_no in /home/kitecareer/public_html/regtest/index.php on line 50
+[12-Mar-2024 13:41:22 UTC] PHP Notice:  Undefined index: degree in /home/kitecareer/public_html/regtest/index.php on line 51
+[12-Mar-2024 13:41:22 UTC] PHP Notice:  Undefined index: college in /home/kitecareer/public_html/regtest/index.php on line 52
+[12-Mar-2024 13:41:22 UTC] PHP Notice:  Undefined index: year in /home/kitecareer/public_html/regtest/index.php on line 53
+[12-Mar-2024 13:41:22 UTC] PHP Notice:  Undefined index: department in /home/kitecareer/public_html/regtest/index.php on line 54
+[12-Mar-2024 13:41:22 UTC] PHP Notice:  Undefined index: city in /home/kitecareer/public_html/regtest/index.php on line 55
+[12-Mar-2024 13:41:22 UTC] PHP Notice:  Undefined index: dob in /home/kitecareer/public_html/regtest/index.php on line 56
+[12-Mar-2024 13:41:34 UTC] PHP Notice:  Undefined index: mobile_no in /home/kitecareer/public_html/regtest/index.php on line 50
+[12-Mar-2024 13:41:34 UTC] PHP Notice:  Undefined index: degree in /home/kitecareer/public_html/regtest/index.php on line 51
+[12-Mar-2024 13:41:34 UTC] PHP Notice:  Undefined index: college in /home/kitecareer/public_html/regtest/index.php on line 52
+[12-Mar-2024 13:41:34 UTC] PHP Notice:  Undefined index: year in /home/kitecareer/public_html/regtest/index.php on line 53
+[12-Mar-2024 13:41:34 UTC] PHP Notice:  Undefined index: department in /home/kitecareer/public_html/regtest/index.php on line 54
+[12-Mar-2024 13:41:34 UTC] PHP Notice:  Undefined index: city in /home/kitecareer/public_html/regtest/index.php on line 55
+[12-Mar-2024 13:41:34 UTC] PHP Notice:  Undefined index: dob in /home/kitecareer/public_html/regtest/index.php on line 56
+[12-Mar-2024 15:32:08 UTC] PHP Fatal error:  Cannot redeclare sendMail() (previously declared in /home/kitecareer/public_html/regtest/index.php:23) in /home/kitecareer/public_html/regtest/index.php on line 294
+[12-Mar-2024 15:32:13 UTC] PHP Fatal error:  Cannot redeclare sendMail() (previously declared in /home/kitecareer/public_html/regtest/index.php:23) in /home/kitecareer/public_html/regtest/index.php on line 294
+[12-Mar-2024 15:32:34 UTC] PHP Fatal error:  Cannot redeclare sendMail() (previously declared in /home/kitecareer/public_html/regtest/index.php:23) in /home/kitecareer/public_html/regtest/index.php on line 294
+[12-Mar-2024 15:35:09 UTC] PHP Fatal error:  Cannot redeclare sendMail() (previously declared in /home/kitecareer/public_html/regtest/index.php:23) in /home/kitecareer/public_html/regtest/index.php on line 294
+[13-Mar-2024 03:57:57 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/kitecareer/public_html/regtest/index.php on line 284
+[13-Mar-2024 04:45:32 UTC] PHP Notice:  Undefined variable: Date in /home/kitecareer/public_html/regtest/index.php on line 138
+[13-Mar-2024 05:25:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function password() in /home/kitecareer/public_html/regtest/sign.php:20
+Stack trace:
+#0 {main}
+  thrown in /home/kitecareer/public_html/regtest/sign.php on line 20
+[13-Mar-2024 08:32:04 UTC] PHP Notice:  Undefined variable: email in /home/kitecareer/public_html/regtest/index.php on line 326
+[13-Mar-2024 08:32:47 UTC] PHP Notice:  Undefined variable: email in /home/kitecareer/public_html/regtest/index.php on line 326
+[15-Mar-2024 07:24:28 UTC] PHP Warning:  require(PHPExcel/PHPExcel.php): failed to open stream: No such file or directory in /home/kitecareer/public_html/regtest/download.php on line 25
+[15-Mar-2024 07:24:28 UTC] PHP Fatal error:  require(): Failed opening required 'PHPExcel/PHPExcel.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/kitecareer/public_html/regtest/download.php on line 25
+[15-Mar-2024 07:24:31 UTC] PHP Warning:  require(PHPExcel/PHPExcel.php): failed to open stream: No such file or directory in /home/kitecareer/public_html/regtest/download.php on line 25
+[15-Mar-2024 07:24:31 UTC] PHP Fatal error:  require(): Failed opening required 'PHPExcel/PHPExcel.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/kitecareer/public_html/regtest/download.php on line 25
+[15-Mar-2024 07:24:33 UTC] PHP Warning:  require(PHPExcel/PHPExcel.php): failed to open stream: No such file or directory in /home/kitecareer/public_html/regtest/download.php on line 25
+[15-Mar-2024 07:24:33 UTC] PHP Fatal error:  require(): Failed opening required 'PHPExcel/PHPExcel.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/kitecareer/public_html/regtest/download.php on line 25
+[15-Mar-2024 07:26:41 UTC] PHP Warning:  require(PHPExcel/PHPExcel.php): failed to open stream: No such file or directory in /home/kitecareer/public_html/regtest/download.php on line 29
+[15-Mar-2024 07:26:41 UTC] PHP Fatal error:  require(): Failed opening required 'PHPExcel/PHPExcel.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/kitecareer/public_html/regtest/download.php on line 29
+[15-Mar-2024 07:26:50 UTC] PHP Warning:  require(PHPExcel/PHPExcel.php): failed to open stream: No such file or directory in /home/kitecareer/public_html/regtest/download.php on line 29
+[15-Mar-2024 07:26:50 UTC] PHP Fatal error:  require(): Failed opening required 'PHPExcel/PHPExcel.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/kitecareer/public_html/regtest/download.php on line 29
+[15-Mar-2024 07:28:29 UTC] PHP Warning:  require_once(PHPExcel/PHPExcel.php): failed to open stream: No such file or directory in /home/kitecareer/public_html/regtest/download.php on line 28
+[15-Mar-2024 07:28:29 UTC] PHP Fatal error:  require_once(): Failed opening required 'PHPExcel/PHPExcel.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/kitecareer/public_html/regtest/download.php on line 28
