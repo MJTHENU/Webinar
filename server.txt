@@ -1,0 +1,256 @@
+vpkndmivbpkvvlbq
+
+
+<?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\DSNConfigurator;
+use PHPMailer\PHPMailer\Exception;
+
+// Set error reporting
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Include PHPMailer and autoloader
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+require 'PHPMailer/src/Exception.php';
+require './vendor/autoload.php';
+require 'PHPMailer/src/DSNConfigurator.php';
+
+// Database connection parameters
+$localhost = "localhost";
+$username = "skill";
+$password = "SCknl*t.&aMn";
+$database = "skill_development";
+
+// Connect to the database
+$conn = mysqli_connect($localhost, $username, $password, $database);
+
+// Array to store errors
+$errors = array();
+
+// Check if the form is submitted
+if (isset($_POST['submit'])) {
+    // Retrieve form data
+    $user_id = sprintf("%08d", rand(1, 99999999));
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $email = $_POST['email'];
+    $mobile_no = $_POST['mobile_no'];
+    $degree = $_POST['degree'];
+    $college = $_POST['college'];
+    $year = $_POST['year'];
+    $department = $_POST['department'];
+    $city = $_POST['city'];
+    $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
+
+    // Validate form data
+    if (empty($first_name)) {
+        $errors['first_name'] = "First Name is required";
+    }
+    if (empty($last_name)) {
+        $errors['last_name'] = "Last Name is required";
+    }
+    if (empty($email)) {
+        $errors['email'] = "Email is required";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = "Invalid email format";
+    } else {
+        // Check if email already exists in the database
+        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $errors['email'] = "Email address already exists. Please choose a different one.";
+        }
+    }
+    if (empty($mobile_no)) {
+        $errors['mobile_no'] = "Mobile Number is required";
+    } elseif (!preg_match("/^[7-9][0-9]{9}$/", $mobile_no)) {
+        $errors['mobile_no'] = "Invalid Mobile number format";
+    }
+    if (empty($gender)) {
+        $errors['gender'] = "Gender is required";
+    }
+    if (empty($college)) {
+        $errors['college'] = "College is required";
+    }
+    if (empty($year)) {
+        $errors['year'] = "Year is required";
+    }
+    if (empty($department)) {
+        $errors['department'] = "Department is required";
+    }
+    if (empty($degree)) {
+        $errors['degree'] = "Degree is required";
+    }
+
+    // If no errors, proceed with database insertion and email sending
+    if (empty($errors)) {
+        // Insert data into the database
+        $sql = "INSERT INTO users (user_id, first_name, last_name, email, mobile_no, gender, college, year, degree, department, city) 
+                VALUES ('$user_id', '$first_name', '$last_name', '$email', '$mobile_no', '$gender', '$college', '$year', '$degree', '$department', '$city')";
+        if ($conn->query($sql) === TRUE) {
+            // Send email using PHPMailer
+            $dsn = 'smtp://nithya@kitecareer.com:vpkndmivbpkvvlbq@kitecareer.com:587';
+            try {
+                // Configure PHPMailer with DSN
+                $mailer = DSNConfigurator::mailer($dsn, true); // Set the second parameter to true to enable exceptions
+
+                // Set email content and recipients
+               $mailer->setFrom('nithya@kitecareer.com', 'KiteCareer');
+    $mailer->Host = 'kitecareer.com'; // Replace 'smtp.example.com' with your SMTP host
+    $mailer->Port = 587; // Adjust the port if necessary
+    $mailer->SMTPAuth = true;
+    $mailer->Username = 'nithya@kitecareer.com'; // Replace with your SMTP username
+    $mailer->Password = 'vpkndmivbpkvvlbq'; // Replace with your SMTP password
+    $mailer->addAddress('sarkararjun540@gmail.com','user');
+    $mailer->Subject = 'New Registration';
+                $mailer->isHTML(true);
+                $mailer->Body = '<html><body>';
+                $mailer->Body .= '<h2>New registration</h2>';
+                $mailer->Body .= '<table border="1">';
+                $mailer->Body .= '<tr><th>User Id</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Mobile Number</th><th>Gender</th><th>College</th><th>Degree</th><th>Department</th><th>Passed Out</th><th>City/District</th></tr>';
+                $mailer->Body .= '<tr>';
+                $mailer->Body .= '<td>' . $user_id . '</td>';
+                $mailer->Body .= '<td>' . $first_name . '</td>';
+                $mailer->Body .= '<td>' . $last_name . '</td>';
+                $mailer->Body .= '<td>' . $email . '</td>';
+                $mailer->Body .= '<td>' . $mobile_no . '</td>';
+                $mailer->Body .= '<td>' . $gender . '</td>';
+                $mailer->Body .= '<td>' . $college . '</td>';
+                $mailer->Body .= '<td>' . $degree . '</td>';
+                $mailer->Body .= '<td>' . $department . '</td>';
+                $mailer->Body .= '<td>' . $year . '</td>';
+                $mailer->Body .= '<td>' . $city . '</td>';
+                $mailer->Body .= '</tr></table></body></html>';
+
+                // Send email
+                if (!$mailer->send()) {
+                    throw new Exception('Message could not be sent. Mailer Error: ' . $mailer->ErrorInfo);
+                } else {
+                    echo 'Message has been sent';
+                }
+            } catch (Exception $e) {
+                echo 'Message could not be sent. Error: ', $e->getMessage();
+            }
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+}
+
+// Close the database connection
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Include Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Registration Form</title>
+  
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Image Column with Animation -->
+            <div class="col-lg-7 overflow-hidden animate__animated animate__fadeInLeft">
+                <img src="image/kite1.jpg" alt="kite" class="img-fluid"> 
+            </div>
+            <div class="col-lg-5">
+                <div class="form-style animate__animated animate__fadeInRight">
+                    <h2 class="title">Registration Form</h2>
+                    <form method="POST" action="">
+                        <div class="row form-group">
+                            <div class="col">
+                                <label for="first_name">First Name</label>
+                                <input type="text" class="form-control" placeholder="First name" name="first_name" id="first_name">
+                                <?php if (isset($error['first_name'])) echo "<span class='error'>* " . $error['first_name'] . "</span>"; ?>
+                            </div>
+                            <div class="col">
+                                <label for="last_name">Last Name</label>
+                                <input type="text" class="form-control" placeholder="Last name" name="last_name" id="last_name">
+                                <?php if (isset($error['last_name'])) echo "<span class='error'>* " . $error['last_name'] . "</span>"; ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" name="email" placeholder="example@gmail.com" id="email">
+                            <?php if (isset($error['email'])) echo "<span class='error'>* " . $error['email'] . "</span>"; ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile_no">Mobile No</label>
+                            <input type="text" class="form-control" name="mobile_no" placeholder="123-456-7890" id="mobile_no">
+                            <?php if (isset($error['mobile_no'])) echo "<span class='error'>* " . $error['mobile_no'] . "</span>"; ?>
+                        </div>
+                        <div class="form-group">
+                            <label>Gender:</label>
+                            <input type="radio" id="male" name="gender" value="Male">
+                            <label for="male">Male</label>
+
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+
+                            <input type="radio" id="other" name="gender" value="Other">
+                            <label for="other">Other</label>
+                            <?php if (isset($error['gender'])) echo "<span class='error'>* " . $error['gender'] . "</span>"; ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="college">College</label>
+                            <input type="text" class="form-control" name="college" placeholder="Enter Your College Name" id="college">
+                            <?php if (isset($error['college'])) echo "<span class='error'>* " . $error['college'] . "</span>"; ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="year">Passed out:</label>
+                            <select name="year" id="year">
+                                <optgroup label="---select option---">
+                                    <option value="select">---select---</option>
+                                    <option value="studing">studying</option>
+                                </optgroup>
+                                <optgroup label="passed-out">
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2015">2015</option>
+                                </optgroup>
+                            </select>
+                            <?php if (isset($error['year'])) echo "<span class='error'>* " . $error['year'] . "</span>"; ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="degree">Degree</label>
+                            <input type="text" class="form-control" name="degree" id="degree">
+                            <?php if (isset($error['degree'])) echo "<span class='error'>* " . $error['degree'] . "</span>"; ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <input type="text" class="form-control" name="department" id="department">
+                            <?php if (isset($error['department'])) echo "<span class='error'>* " . $error['department'] . "</span>"; ?>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City / District</label>
+                            <input type="text" class="form-control" name="city" placeholder="Tenkasi" id="city">
+                            <?php if (isset($error['city'])) echo "<span class='error'>* " . $error['city'] . "</span>"; ?>
+                        </div><br>
+                        <button type="submit" name="submit" class="btn btn-primary form-btn">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
